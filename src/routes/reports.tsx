@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { SiteNav } from "@/components/SiteNav";
 import {
   ESTADOS,
@@ -32,6 +32,7 @@ export const Route = createFileRoute("/reports")({
 });
 
 export async function fetchReports(): Promise<Report[]> {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from("reports")
     .select("*")

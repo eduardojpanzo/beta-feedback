@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { SiteNav } from "@/components/SiteNav";
 import { ESTADOS, type Estado } from "@/lib/reports";
 import { ReportCard, fetchReports } from "./reports";
@@ -26,6 +26,7 @@ function AdminPage() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const supabase = createClient();
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setReady(true);
@@ -60,6 +61,7 @@ function LoginForm() {
     e.preventDefault();
     setLoading(true);
     setMsg(null);
+    const supabase = createClient();
     const { error } =
       mode === "in"
         ? await supabase.auth.signInWithPassword({ email, password })
@@ -122,12 +124,14 @@ function AdminList({ email }: { email: string }) {
   const { data, isLoading } = useQuery({ queryKey: ["reports"], queryFn: fetchReports });
 
   async function setEstado(id: string, estado: Estado) {
+    const supabase = createClient();
     await supabase.from("reports").update({ estado }).eq("id", id);
     qc.invalidateQueries({ queryKey: ["reports"] });
   }
 
   async function remover(id: string) {
     if (!confirm("Apagar este report?")) return;
+    const supabase = createClient();
     await supabase.from("reports").delete().eq("id", id);
     qc.invalidateQueries({ queryKey: ["reports"] });
   }
@@ -135,6 +139,7 @@ function AdminList({ email }: { email: string }) {
   async function sair() {
     await qc.cancelQueries();
     qc.clear();
+    const supabase = createClient();
     await supabase.auth.signOut();
   }
 

@@ -20,13 +20,6 @@ export function SiteNav() {
         >
           Ver reports
         </Link>
-        <Link
-          to="/admin"
-          className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-accent"
-          activeProps={{ className: "bg-accent text-foreground" }}
-        >
-          Admin
-        </Link>
       </nav>
     </header>
   );

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { SiteNav } from "@/components/SiteNav";
 import { TIPOS } from "@/lib/reports";
 
@@ -36,20 +36,28 @@ function Index() {
     if (!mensagem.trim()) return;
     setLoading(true);
     setErro(null);
-    const { error } = await supabase.from("reports").insert({
-      nome: nome.trim() || null,
-      tipo,
-      mensagem: mensagem.trim(),
-    });
-    setLoading(false);
-    if (error) {
-      setErro("Não foi possível enviar. Tenta novamente.");
-      return;
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.from("reports").insert({
+        nome: nome.trim() || null,
+        tipo,
+        mensagem: mensagem.trim(),
+      });
+      if (error) {
+        console.error("[Supabase insert error]", error);
+        setErro("Não foi possível enviar. Tenta novamente.");
+        return;
+      }
+      setOk(true);
+      setNome("");
+      setTipo(TIPOS[0].value);
+      setMensagem("");
+    } catch (err) {
+      console.error("[Unexpected error]", err);
+      setErro("Erro inesperado. Tenta novamente.");
+    } finally {
+      setLoading(false);
     }
-    setOk(true);
-    setNome("");
-    setTipo(TIPOS[0].value);
-    setMensagem("");
   }
 
   return (

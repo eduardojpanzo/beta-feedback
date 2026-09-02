@@ -1,18 +1,16 @@
-# Welcome to your Lovable project
+# Beta Feedback
 
-This project was built with [Lovable](https://lovable.dev).
+Plataforma de feedback para beta testers. Reporta bugs, falhas e sugestões de forma rápida e simples.
 
-## Build with Lovable
+## Stack
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- TanStack Start
+- TypeScript
+- React
+- Tailwind CSS
+- Supabase
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Desenvolvimento
 
 ```sh
 git clone <this-repository-url>
@@ -21,10 +19,9 @@ npm i
 npm run dev
 ```
 
-## Built with
+## Features
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
-# beta-feedback
+- Submissão de reports sem login
+- Lista pública de reports com filtros
+- Área de admin com autenticação
+- Gestão de estado dos reports

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="#111"/>
+  <g transform="translate(50,50) scale(0.8)" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- body -->
+    <ellipse cx="0" cy="2" rx="14" ry="18"/>
+    <!-- head -->
+    <circle cx="0" cy="-22" r="8"/>
+    <!-- antennae -->
+    <line x1="-5" y1="-28" x2="-12" y2="-38"/>
+    <line x1="5" y1="-28" x2="12" y2="-38"/>
+    <!-- legs left -->
+    <line x1="-14" y1="-8" x2="-26" y2="-14"/>
+    <line x1="-14" y1="2" x2="-26" y2="2"/>
+    <line x1="-14" y1="12" x2="-26" y2="18"/>
+    <!-- legs right -->
+    <line x1="14" y1="-8" x2="26" y2="-14"/>
+    <line x1="14" y1="2" x2="26" y2="2"/>
+    <line x1="14" y1="12" x2="26" y2="18"/>
+    <!-- body line -->
+    <line x1="0" y1="-16" x2="0" y2="18"/>
+  </g>
+</svg>
